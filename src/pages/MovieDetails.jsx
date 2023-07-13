@@ -5,6 +5,7 @@ import { getApi } from 'components/API/Api';
 
 const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState({});
+
   const params = useParams();
   const getMovie = `movie/${params.movieId}`;
   const location = useLocation();
@@ -23,7 +24,17 @@ const MovieDetails = () => {
     getRequest();
   }, [getRequest]);
 
-  const { poster_path, title, name, overview, genres } = movieInfo;
+  console.log(movieInfo);
+
+  const {
+    poster_path,
+    title,
+    name,
+    vote_average,
+    overview,
+    genres,
+    release_date,
+  } = movieInfo;
   return (
     <>
       <section>
@@ -35,20 +46,24 @@ const MovieDetails = () => {
           />
         </div>
         <div>
-          <h2>{title || name}</h2>
-          <p></p>
+          <h2>
+            {title || name}
+            {`(${release_date?.slice(0, 4)})`}
+          </h2>
+          <p>User Score: {vote_average?.toFixed(2)}%</p>
           <h3>Overview</h3>
           <p>{overview}</p>
           <h3>Genres</h3>
           <p>
-            {genres &&
-              genres.map(({ name }) => <span key={name}>{name}, </span>)}
+            {genres?.map(({ name }) => (
+              <span key={name}>{name}, </span>
+            ))}
           </p>
         </div>
       </section>
       <section>
+        <h3>Additional information</h3>
         <ul>
-          <h3>MovieDetails: {params.movieId}</h3>
           <li>
             <Link to="reviews">Reviews</Link>
           </li>
