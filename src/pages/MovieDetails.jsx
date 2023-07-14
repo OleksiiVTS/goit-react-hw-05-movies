@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { getApi } from 'components/API/Api';
@@ -11,20 +11,18 @@ const MovieDetails = () => {
   const location = useLocation();
   // const backLinkHref = useRef(location.state?.from ?? '/');
 
-  const getRequest = useCallback(async () => {
-    try {
-      const { data } = await getApi(getMovie);
-      setMovieInfo(data);
-    } catch (error) {
-      alert(error.message);
-    }
-  }, [getMovie]);
-
   useEffect(() => {
-    getRequest();
-  }, [getRequest]);
+    const getRequest = async () => {
+      try {
+        const { data } = await getApi(getMovie);
+        setMovieInfo(data);
+      } catch (error) {
+        alert(error.message);
+      }
+    };
 
-  console.log(movieInfo);
+    getRequest();
+  }, [getMovie]);
 
   const {
     poster_path,
