@@ -1,4 +1,7 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import { Circles } from 'react-loader-spinner';
+import css from '../Loader/Loader.module.css';
 import {
   Header,
   Container,
@@ -24,7 +27,18 @@ const SharedLayout = () => {
         </Container>
       </Header>
       <main>
-        <Outlet />
+        <Suspense
+          fallback={
+            <Circles
+              height="80"
+              width="80"
+              color="#4d78a9"
+              wrapperClass={css.loader}
+            />
+          }
+        >
+          <Outlet />
+        </Suspense>
       </main>
     </>
   );

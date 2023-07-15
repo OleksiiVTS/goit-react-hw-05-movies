@@ -57,8 +57,8 @@ export const AdditionalLink = styled(NavLink)`
   margin: 0;
   padding: 0;
 
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 15px;
   line-height: 1;
 
   &:hover {

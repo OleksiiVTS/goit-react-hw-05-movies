@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { getApi } from 'components/API/Api';
+import { Circles } from 'react-loader-spinner';
+import css from '../../components/Loader/Loader.module.css';
 import {
   MoviesGoBack,
   MoviesSection,
@@ -9,7 +11,6 @@ import {
   MoviesContainer,
   AdditionalUl,
   AdditionalLink,
-  CastImg,
 } from './MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -74,7 +75,7 @@ const MovieDetails = () => {
           </DataMovie>
         </MoviesContainer>
       </MoviesSection>
-      <section>
+      <MoviesSection>
         <MoviesContainer>
           <h4>Additional information</h4>
           <AdditionalUl>
@@ -92,7 +93,22 @@ const MovieDetails = () => {
               </AdditionalLink>
             </li>
           </AdditionalUl>
-          <Outlet />
+        </MoviesContainer>
+      </MoviesSection>
+      <section>
+        <MoviesContainer>
+          <Suspense
+            fallback={
+              <Circles
+                height="80"
+                width="80"
+                color="#4d78a9"
+                wrapperClass={css.loader}
+              />
+            }
+          >
+            <Outlet />
+          </Suspense>
         </MoviesContainer>
       </section>
     </>
