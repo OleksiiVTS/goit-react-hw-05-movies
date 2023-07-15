@@ -49,7 +49,6 @@ const Movies = () => {
       return;
     }
     const query = searchParams.get('query');
-    // const backRacvest = location.search.slice(7);
     getSerchRequest(query);
   }, [dataSabmits.length, getSerchRequest, location.search, searchParams]);
 
