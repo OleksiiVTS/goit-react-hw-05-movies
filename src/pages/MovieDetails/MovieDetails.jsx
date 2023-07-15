@@ -19,7 +19,7 @@ const MovieDetails = () => {
     { poster_path, title, name, vote_average, overview, genres, release_date },
     setMovieInfo,
   ] = useState({});
-  const [errorRequvest, seterrorRequvest] = useState(false);
+  const [errorRequvest, setErrorRequvest] = useState(false);
   const params = useParams();
   const getMovie = `movie/${params.movieId}`;
   const location = useLocation();
@@ -31,7 +31,7 @@ const MovieDetails = () => {
         const { data } = await getApi(getMovie);
         setMovieInfo(data);
       } catch (error) {
-        seterrorRequvest(true);
+        setErrorRequvest(true);
         alert(error.message);
       }
     };
