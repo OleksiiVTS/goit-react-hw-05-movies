@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { getApi } from 'components/API/Api';
 import { useCallback, useEffect, useState } from 'react';
+import { SerchContainer, SerchForm } from './Movies.styled';
 
 const Movies = () => {
   const [dataSabmits, setDataSabmit] = useState([]);
@@ -53,16 +54,15 @@ const Movies = () => {
   }, [dataSabmits.length, getSerchRequest, location.search, searchParams]);
 
   return (
-    <>
-      <h1>Movies</h1>
-      <form onSubmit={handleSubmit}>
+    <SerchContainer>
+      <SerchForm onSubmit={handleSubmit}>
         <label>
           <input name="input" type="text" />
         </label>
         <button name="submit" type="submit">
           Serch
         </button>
-      </form>
+      </SerchForm>
       <ul>
         {dataSabmits.length > 0 &&
           dataSabmits.map(({ id, title, name }) => (
@@ -73,7 +73,7 @@ const Movies = () => {
             </li>
           ))}
       </ul>
-    </>
+    </SerchContainer>
   );
 };
 

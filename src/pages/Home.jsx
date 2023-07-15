@@ -20,9 +20,10 @@ const Home = () => {
   useEffect(() => {
     getRequest();
   }, [getRequest]);
+
   return (
     <>
-      <h1>Home</h1>
+      <h1>Trending today</h1>
       <ul>
         {movies.map(({ id, title, name }) => {
           return (
