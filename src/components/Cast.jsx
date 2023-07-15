@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getApi } from './API/Api';
+import images from './details/images.png';
+import { CastImg } from 'pages/MovieDetails/MovieDetails.styled';
 
 const Cast = () => {
   const params = useParams();
@@ -11,7 +13,6 @@ const Cast = () => {
     const getRequest = async () => {
       try {
         const { data } = await getApi(getCredits);
-        console.log(data.cast);
         setMovieInfo(data.cast);
       } catch (error) {
         alert(error.message);
@@ -26,8 +27,12 @@ const Cast = () => {
       <ul>
         {movieInfos.map(({ id, name, character, profile_path }) => (
           <li key={id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+            <CastImg
+              src={
+                profile_path
+                  ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                  : images
+              }
               alt={name}
             />
             <h4>{name}</h4>
