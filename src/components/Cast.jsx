@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getApi } from './API/Api';
+import { getApi } from '../API/Api';
 import images from './details/images.png';
 import { CastImg } from 'pages/MovieDetails/MovieDetails.styled';
 
