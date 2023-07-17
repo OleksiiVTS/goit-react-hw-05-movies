@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { getApi } from 'API/Api';
 import { useEffect, useState } from 'react';
-import { SerchContainer, SerchForm } from './Movies.styled';
+import { SearchContainer, ListContainer, SearchForm } from './Movies.styled';
 import MovieList from 'components/MovieList';
 
 const getSearchMovie = 'search/movie';
@@ -36,17 +36,19 @@ const Movies = () => {
   };
 
   return (
-    <SerchContainer>
-      <SerchForm onSubmit={handleSubmit}>
-        <label>
-          <input name="input" type="text" defaultValue={query} />
-        </label>
-        <button name="submit" type="submit">
-          Search
-        </button>
-      </SerchForm>
-      {dataSubmits.length > 0 && <MovieList data={dataSubmits} />}
-    </SerchContainer>
+    <SearchContainer>
+      <ListContainer>
+        <SearchForm onSubmit={handleSubmit}>
+          <label>
+            <input name="input" type="text" defaultValue={query} />
+          </label>
+          <button name="submit" type="submit">
+            Search
+          </button>
+        </SearchForm>
+        {dataSubmits.length > 0 && <MovieList data={dataSubmits} />}
+      </ListContainer>
+    </SearchContainer>
   );
 };
 
